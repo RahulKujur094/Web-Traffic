@@ -24,15 +24,13 @@ async function createPrediction(prompt) {
   const input = { prompt };
   const body = JSON.stringify(version ? { version, input } : { input });
 
+  // Fallback to a default public model slug if none is configured
+  const modelOwner = owner || process.env.REPLICATE_DEFAULT_OWNER || 'tencentarc';
+  const modelName = name || process.env.REPLICATE_DEFAULT_NAME || 'cogvideox-5b';
+
   const endpoint = version
     ? `${API_BASE}/predictions`
-    : (owner && name)
-      ? `${API_BASE}/models/${encodeURIComponent(owner)}/${encodeURIComponent(name)}/predictions`
-      : null;
-
-  if (!endpoint) {
-    throw new Error('Model not configured. Set REPLICATE_MODEL_VERSION or REPLICATE_MODEL_OWNER and REPLICATE_MODEL_NAME.');
-  }
+    : `${API_BASE}/models/${encodeURIComponent(modelOwner)}/${encodeURIComponent(modelName)}/predictions`;
 
   const res = await fetch(endpoint, { method: 'POST', headers, body });
   if (!res.ok) {
