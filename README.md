@@ -1,15 +1,17 @@
-# 🧾 Walmart Sales Analysis Project
+The Business Problem: The e-commerce platform was experiencing high traffic volumes but a lower-than-expected "Checkout Completion Rate." The goal was to pinpoint exactly where and why users were dropping off.
 
-This project provides a comprehensive analysis of sales data for a fictional Walmart store using SQL. The analysis uncovers insights across multiple dimensions like product performance, customer demographics, revenue trends, and branch-wise performance.
+The Dataset: I worked with a raw event log table containing over 1 million rows.
 
-## 📁 Dataset Overview
+Schema Structure:
 
-- **File:** `Walmart_SALES.csv`
-- **Rows:** ~1000+
-- **Fields:** 
-  - `invoice_id`, `branch`, `city`, `customer_type`, `gender`
-  - `product_line`, `unit_price`, `quantity`, `tax_pct`, `total`
-  - `date`, `time`, `payment`, `cogs`, `gross_margin_pct`, `gross_income`, `rating`
+user_id: Unique identifier for the customer.
+
+event_timestamp: Time of the action.
+
+event_type: (e.g., page_view, add_to_cart, checkout_start, purchase).
+
+
+acquisition_channel: (e.g., Organic, Paid Ad, Social Media).
 
 The dataset includes transactional sales records, payment details, customer demographics, and product information.
 
